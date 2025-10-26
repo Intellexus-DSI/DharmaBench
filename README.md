@@ -1,3 +1,5 @@
+# DharmaBench: A Benchmark for Buddhist Texts in Sanskrit and Classical Tibetan
+
 **DharmaBench** is a comprehensive benchmark suite for evaluating large language models (LLMs) on classification and detection tasks in historical Buddhist texts written in Sanskrit and Classical Tibetan. The benchmark includes 13 tasks (6 Sanskrit, 7 Tibetan), with 4 shared across both languages.
 
 ## 🚀 Quick Start
@@ -191,12 +193,7 @@ For questions or contributions, please contact: golankai@gmail.com
 
 For detailed dataset information, see [Data README](data/README.md).
 
-
 <div align="center">
   <img src="assets/IL_RGB_Black_Gold.png" alt="IL Logo" width="150"/>
   <img src="assets/UHH Logo.png" alt="UHH Logo" width="150"/>
-  
-  # DharmaBench: A Benchmark for Buddhist Texts in Sanskrit and Classical Tibetan
-  
-  *Evaluating LLMs on Historical Buddhist Texts*
 </div>
