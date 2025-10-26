@@ -1,4 +1,12 @@
-# DharmaBench: A Benchmark for Buddhist Texts in Sanskrit and Classical Tibetan
+<div align="center">
+  <img src="IL_RGB_Black_Gold.png" alt="DharmaBench Logo" width="200"/>
+  <!-- או לוגו מאינטרנט: -->
+  <!-- <img src="https://raw.githubusercontent.com/username/DharmaBench/main/logo.png" alt="DharmaBench Logo" width="200"/> -->
+  
+  # DharmaBench: A Benchmark for Buddhist Texts in Sanskrit and Classical Tibetan
+  
+  *Evaluating LLMs on Historical Buddhist Texts*
+</div>
 
 **DharmaBench** is a comprehensive benchmark suite for evaluating large language models (LLMs) on classification and detection tasks in historical Buddhist texts written in Sanskrit and Classical Tibetan. The benchmark includes 13 tasks (6 Sanskrit, 7 Tibetan), with 4 shared across both languages.
 
@@ -123,6 +131,10 @@ For detailed information about each task and dataset structure, see [Data README
 ## 🏃‍♂️ Running Evaluations
 
 ### Basic Evaluation
+```bash
+python run_llm_eval.py
+```
+or 
 ```bash
 python run_llm_eval.py --config_file config_llm_eval.yaml
 ```
