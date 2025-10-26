@@ -1,0 +1,27 @@
+# API Keys for Model Evaluation Project
+# This file contains API keys for various AI providers
+# IMPORTANT: Never commit this file to version control!
+
+# OpenAI API Key (for GPT-4o, GPT-4o-mini)
+# Get from: https://platform.openai.com/api-keys
+OPENAI_API_KEY: "your_openai_api_key_here"
+
+# Anthropic API Key (for Claude models)
+# Get from: https://console.anthropic.com/
+ANTHROPIC_API_KEY: "your_anthropic_api_key_here"
+
+# Google API Key (for Gemini models)
+# Get from: https://makersuite.google.com/app/apikey
+GOOGLE_API_KEY: "your_google_api_key_here"
+
+# Together AI API Key (for Scout, Qwen-72B)
+# Get from: https://together.ai/
+TOGETHER_API_KEY: "your_together_api_key_here"
+
+# HuggingFace API Key (for local models)
+# Get from: https://huggingface.co/settings/tokens
+HUGGINGFACE_API_KEY: "your_huggingface_api_key_here"
+
+# Optional: Cohere API Key (if using Cohere models)
+# Get from: https://cohere.ai/
+# COHERE_API_KEY: "your_cohere_api_key_here" 

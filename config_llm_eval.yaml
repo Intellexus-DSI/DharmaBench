@@ -1,0 +1,82 @@
+---
+# Configs for evaluation of LLMs in an in-context-learning manner.
+
+####################################################################################################
+# General config
+temperature: 0.3 # 0.3 without SC, 0.8 with SC
+results_dir: results
+logs_dir: logs
+
+responses_dir: null # if not null, loads existing responses and configs instead of running the model again
+
+data_dir: ./data
+
+prompt_type: zero_shot
+# debug_samples: [36, 40, 44, 47, 58]
+# a good values is 0.3
+shots: 0
+sc_runs: 1 # Number of runs for Self-Consistency (1 means no SC)
+stop_on_response_error: True
+
+# use with: gpt-4o-mini, Haiku
+use_rate_limiter: True # Use rate limiter to avoid hitting the API too fast
+
+# Recommended values
+# model: gemini-2.0-flash   -> no limiter
+# model: gemini-2.5-flash   -> no limiter
+# model: gpt-4o-mini        -> 0.7
+# model: scout              -> 0.7
+# model: qwen-72b           -> 0.9
+# model: claude-3-haiku     -> 0.9
+# model: gemini-2.5-pro     -> 0.9
+# model: claude-3.7-sonnet  -> 0.4
+# model: claude-4-sonnet    -> 0.1
+# model: gpt-4o             -> 0.4
+# model: deepseek-r1        -> 0.3
+requests_per_second: 0.7
+check_every_n_seconds: 10
+
+batched: True # Whether to use batched inference or not
+debug: True
+# debug: False
+num_samples: 10
+
+
+### Seeds ###
+# seed: 42
+# seed: 53
+seed: 64
+
+
+### Sanskrit tasks ###
+# task: SMDS 
+# task: VPCS
+# task: MCS
+# task: QUDS
+# task: RCMS
+task: RCDS
+
+### Tibetan tasks ###
+# task: AACT
+# task: VPCT
+# task: SCCT
+# task: THCT
+# task: QUDT
+# task: RCMT
+# task: SDT
+
+
+### Model to run ###
+# model: gemini-2.0-flash
+model: gemini-2.5-flash
+# model: gpt-4o-mini
+# model: qwen-72b
+# model: scout
+# model: claude-3-haiku
+
+### Expensive big models ###
+# model: gemini-2.5-pro
+# model: claude-3.7-sonnet
+# model: claude-4-sonnet
+# model: gpt-4o
+# model: deepseek-r1
