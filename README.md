@@ -1,112 +1,199 @@
-
 # DharmaBench: A Benchmark for Buddhist Texts in Sanskrit and Classical Tibetan
 
-**DharmaBench** is a multi-task benchmark suite for evaluating large language models (LLMs) on classification and detection tasks in historical Buddhist texts written in Sanskrit and Classical Tibetan. The benchmark includes 13 tasks (6 Sanskrit, 7 Tibetan), with 4 share in both languages.
+**DharmaBench** is a comprehensive benchmark suite for evaluating large language models (LLMs) on classification and detection tasks in historical Buddhist texts written in Sanskrit and Classical Tibetan. The benchmark includes 13 tasks (6 Sanskrit, 7 Tibetan), with 4 shared across both languages.
 
-This repository contains only the **dataset files** that are released under CC BY 4.0 License. Code for evaluation and full model results is released separately (TBD).
+## 🚀 Quick Start
 
-## 📂 Repository Structure
+### Prerequisites
 
-DharmaBench/\
-├── Sanskrit/ \
-│   ├── SMDS/\
-│   │   └── test.json\
-│   ├── QUDS/\
-│   │   └── test.json\
-│   └── ...\
-├── Tibetan/\
-│   ├── SDT/\
-│   │   └── test.json\
-│   ├── AACT/\
-│   │   └── test.json\
-│   │   └── train.json\
-│   └── ...\
-└── src/ \
-└── README.md \
-└── ...
+- Python 3.8+
+- Git
 
+### Installation
 
-- Each task is stored in its own subdirectory under either `Sanskrit/` or `Tibetan/`.
-- Datasets include `test.json`, if applicable also `train.json`.
-- All files are standardized with minimal, unified fields. Each entry includes an `id` field.
+1. **Clone the repository:**
+```bash
+git clone <repository-url>
+cd DharmaBench
+```
 
-## 🧠 Tasks
+2. **Install dependencies:**
+```bash
+pip install -r requirements.txt
+```
 
-We define 13 benchmark tasks across Sanskrit and Classical Tibetan. Each task below lists the language, the input, and the expected output.
+3. **Set up API keys:**
+   - Copy `keys.yaml` and add your API keys for the models you want to use
+   - Supported providers: OpenAI, Anthropic, Google, Together AI, Cohere
 
-### Sanskrit Tasks
+### First Run
 
-1. **Simile and Metaphor Detection in Sanskrit (SMDS)**  
-   Detection of *upamā* (similes) and *rūpaka* (metaphors) in Sanskrit Buddhist texts. The input is a text, potentially containing similes and/or metaphors. The output should be a list of detections and their type.
+1. **Configure your evaluation:**
+   - Edit `config_llm_eval.yaml` to set your desired model, task, and parameters
+   - See [Configuration Parameters](#configuration-parameters) below for details
 
-2. **Quotation Detection in Sanskrit (QUDS)**  
-   Detection of explicit quotations from other works, with possible extraction of author and title names. The input is a text. The output is a list of spans labeled as QUOTE, TITLE, or AUTHOR.
+2. **Run evaluation:**
+```bash
+python run_llm_eval.py
+```
 
-3. **Root-Text and Commentary Matching in Sanskrit (RCMS)**  
-Classification of whether a given commentary passage matches a given verse or excerpt from a root-text. The input is a pair: root-text and candidate commentary. The output is TRUE if matching, otherwise FALSE.
+3. **For training classification models:**
+   - Open `train_classification.ipynb` in Jupyter
+   - Follow the notebook cells to fine-tune XLM-RoBERTa models
 
-4. **Root-Text and Commentary Detection in Sanskrit (RCDS)**  
-   Given a root-text and a candidate passage, detect the exact span of commentary if present. The input is a pair: root-text and candidate passage. The output is the commentary span(s) or “none” if no match exists.
+## ⚙️ Configuration Parameters
 
-5. **Verse vs. Prose Classification in Sanskrit (VPCS)**  
-   Document-level classification of a Sanskrit text as predominantly verse or prose. The input is an entire text. The output is either VERSE or PROSE.
+The `config_llm_eval.yaml` file contains all evaluation settings:
 
-6. **Metre Classification in Sanskrit (MCS)**  
-   Classification of a Sanskrit verse into one of ten common metrical patterns. The input is a verse. The output is the metre label.
+### General Settings
+- **`temperature`**: Controls randomness (0.3 for standard, 0.8 for self-consistency)
+- **`results_dir`**: Directory to save results (default: `results`)
+- **`logs_dir`**: Directory to save logs (default: `logs`)
+- **`data_dir`**: Path to dataset directory (default: `./data`)
 
-### Tibetan Tasks
+### Evaluation Settings
+- **`prompt_type`**: Type of prompting (`zero_shot` or `few_shot`)
+- **`shots`**: Number of examples for few-shot learning (0 for zero-shot)
+- **`sc_runs`**: Number of self-consistency runs (1 = no self-consistency)
+- **`debug`**: Enable debug mode with limited samples
+- **`num_samples`**: Number of samples to use in debug mode
 
-1. **Simile Detection in Tibetan (SDT)**  
-   Detection of *dpe rgyan* (similes) in Tibetan Buddhist texts. The input is a text, potentially containing similes. The output should be a list of simile spans.
+### Model Settings
+- **`model`**: Model to evaluate (see supported models below)
+- **`use_rate_limiter`**: Enable rate limiting for API calls
+- **`requests_per_second`**: API request rate limit
+- **`batched`**: Use batched inference (recommended)
 
-2. **Quotation Detection in Tibetan (QUDT)**  
-   Detection of explicit quotations from other works. The input is a text. The output is a list of QUOTE spans.
+### Task Selection
+Choose one task to evaluate:
+- **Sanskrit tasks**: `SMDS`, `VPCS`, `MCS`, `QUDS`, `RCMS`, `RCDS`
+- **Tibetan tasks**: `AACT`, `VPCT`, `SCCT`, `THCT`, `QUDT`, `RCMT`, `SDT`
 
-3. **Root-Text and Commentary Matching in Tibetan (RCMT)**  
-   Classification of whether a given commentary passage matches a given root-text. The input is a pair: root-text and candidate commentary. The output is TRUE if matching, otherwise FALSE.
+### Supported Models
 
-4. **Verse vs. Prose Classification in Tibetan (VPCT)**  
-   Document-level classification of a Tibetan text as predominantly verse or prose. The input is an entire text. The output is either VERSE or PROSE.
+#### Fast Models (Recommended for testing)
+- `gemini-2.0-flash`
+- `gemini-2.5-flash`
+- `gpt-4o-mini`
+- `claude-3-haiku`
 
-5. **Allochthonous vs. Autochthonous Classification in Tibetan (AACT)**  
-   Classification of a Tibetan text as translated from another language (ALLO) or composed in Tibetan (AUTO). The input is a text. The output is ALLO or AUTO.
+#### High-Performance Models
+- `gemini-2.5-pro`
+- `claude-3.7-sonnet`
+- `claude-4-sonnet`
+- `gpt-4o`
 
-6. **Scriptures vs. Non-scriptures Classification in Tibetan (SCCT)**  
-   Classification of a Tibetan canonical text as scripture (SCR) or non-scripture (NSCR). The input is a text. The output is SCR or NSCR.
+#### Open Source Models
+- `qwen-72b`
+- `deepseek-r1`
 
-7. **Thematic Classification in Tibetan (THCT)**  
-   Classification of a Tibetan canonical text into one of 13 predefined Buddhist themes. The input is a text. The output is the theme label.
+## 📊 About the Research
 
+DharmaBench addresses the critical gap in evaluating LLMs on historical Buddhist texts, which present unique challenges:
 
-### 🌐 Multilingual Tasks
+- **Linguistic complexity**: Sanskrit and Classical Tibetan have rich morphological systems
+- **Cultural context**: Buddhist texts require understanding of philosophical concepts
+- **Multilingual evaluation**: Cross-lingual comparison between Sanskrit and Tibetan
+- **Domain-specific tasks**: Specialized tasks like metre classification and commentary detection
 
-Several tasks are designed in both Sanskrit and Classical Tibetan to enable cross-lingual evaluation and comparison:
+The benchmark includes both **classification tasks** (predicting categories) and **detection tasks** (identifying spans in text), providing comprehensive evaluation across different NLP capabilities.
 
-| Task Name                        | Sanskrit Code | Tibetan Code |
-|---------------------------------|---------------|--------------|
-| Simile and Metaphor Detection   | SMDS          | SDT          |
-| Quotation Detection             | QUDS          | QUDT         |
-| Root-Text and Commentary Matching | RCDS          | RCMT         |
-| Verse vs. Prose Classification  | VPCS          | VPCT         |
+### Key Features
+- **13 diverse tasks** across two classical languages
+- **4 cross-lingual tasks** for comparative evaluation
+- **Balanced dataset sizes** with train/test splits where available
+- **Standardized evaluation** with consistent metrics and protocols
 
+## 📁 Dataset Overview
 
-## 📊 Dataset Sizes
+DharmaBench contains carefully curated datasets for each task:
 
-The table below summarizes the number of samples in each dataset split for all tasks included in DharmaBench. Training splits are included when available.
+- **Sanskrit tasks**: 6 tasks covering simile/metaphor detection, quotation detection, commentary analysis, and text classification
+- **Tibetan tasks**: 7 tasks including thematic classification, scriptural categorization, and translation origin detection
+- **Multilingual tasks**: 4 tasks available in both languages for cross-lingual evaluation
 
-![Dataset Sizes Table](src/dataset_table.png)
+Each dataset includes:
+- Standardized JSON format with `id` fields
+- Train/test splits where applicable
+- Balanced class distributions
+- High-quality annotations by domain experts
+
+For detailed information about each task and dataset structure, see [Data README](data/README.md).
+
+## 🏃‍♂️ Running Evaluations
+
+### Basic Evaluation
+```bash
+python run_llm_eval.py
+```
+or 
+```bash
+python run_llm_eval.py --config_file config_llm_eval.yaml
+```
+
+### Custom Parameters
+```bash
+python run_llm_eval.py --seed 42 --sc_runs 3 --responses_dir ./previous_results
+```
+
+### Command Line Options
+- `--config_file`: Path to configuration file
+- `--seed`: Random seed for reproducibility
+- `--sc_runs`: Number of self-consistency runs
+- `--responses_dir`: Directory with existing responses to reprocess
+
+## 📈 Results and Metrics
+
+Results are saved in the `results/` directory with:
+- **`metrics.json`**: Overall performance metrics
+- **`classification_report.json`**: Detailed classification report
+- **`results.tsv`**: Per-sample predictions and ground truth
+- **`responses.json`**: Raw model responses
+- **`config.yaml`**: Configuration used for the run
+
+## 🔬 Training Classification Models
+
+The `train_classification.ipynb` notebook provides:
+- XLM-RoBERTa fine-tuning for classification tasks
+- Cross-lingual transfer learning between Sanskrit and Tibetan
+- Comprehensive evaluation and visualization
+- Model comparison and analysis
 
 ## 📜 Citation
 
 If you use DharmaBench in your research, please cite:
 
-TBD
+```bibtex
+@article{dharmabench2024,
+  title={DharmaBench: A Benchmark for Buddhist Texts in Sanskrit and Classical Tibetan},
+  author={[Authors]},
+  journal={[Journal]},
+  year={2024}
+}
+```
 
-## 🤝 License
+## 🤝 Contributing
 
-- **Data**: CC BY 4.0  
-- **Evaluation Code** (not included here): Apache 2.0
+We welcome contributions! Please:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## 📄 License
+
+- **Data**: CC BY 4.0
+- **Code**: Apache 2.0
 
 ## 📫 Contact
 
-For questions or contributions, please contact golankai@gmail.com.
+For questions or contributions, please contact: golankai@gmail.com
+
+---
+
+For detailed dataset information, see [Data README](data/README.md).
+
+<div align="center">
+  <img src="assets/IL_RGB_Black_Gold.png" alt="IL Logo" width="150"/>
+  <img src="assets/UHH Logo.png" alt="UHH Logo" width="150"/>
+</div>
