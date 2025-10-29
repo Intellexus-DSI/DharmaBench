@@ -151,14 +151,6 @@ Results are saved in the `results/` directory with:
 - **`responses.json`**: Raw model responses
 - **`config.yaml`**: Configuration used for the run
 
-## 🔬 Training Classification Models
-
-The `train_classification.ipynb` notebook provides:
-- XLM-RoBERTa fine-tuning for classification tasks
-- Cross-lingual transfer learning between Sanskrit and Tibetan
-- Comprehensive evaluation and visualization
-- Model comparison and analysis
-
 ## 📜 Citation
 
 If you use DharmaBench in your research, please cite:
