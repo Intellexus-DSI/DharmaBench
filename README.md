@@ -2,6 +2,23 @@
 
 **DharmaBench** is a comprehensive benchmark suite for evaluating large language models (LLMs) on classification and detection tasks in historical Buddhist texts written in Sanskrit and Classical Tibetan. The benchmark includes 13 tasks (6 Sanskrit, 7 Tibetan), with 4 shared across both languages.
 
+## 📋 Repository Overview
+
+This repository contains everything needed to work with DharmaBench:
+
+| Component | Description | Location |
+|-----------|-------------|----------|
+| **Dataset** | Curated datasets for all 13 tasks in Sanskrit and Tibetan | [`data/`](data/) |
+| **API Evaluation** | Run LLM evaluations via API calls (OpenAI, Anthropic, Google, etc.) | [`run_llm_eval.py`](run_llm_eval.py) |
+| **Configuration** | Model settings, task parameters, and evaluation configs | [`config_llm_eval.yaml`](config_llm_eval.yaml) |
+| **Utilities** | Helper functions for models, schemas, and data processing | [`utils/`](utils/) |
+| **Tasks** | Individual task implementations and evaluation logic | [`tasks/`](tasks/) |
+
+### Quick Navigation
+- **New to DharmaBench?** → Start with [Quick Start](#-quick-start)
+- **Want to evaluate models?** → See [Running Evaluations](#-running-evaluations)
+- **Looking for data details?** → Check [Data README](data/README.md)
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -86,6 +103,9 @@ Choose one task to evaluate:
 #### Open Source Models
 - `qwen-72b`
 - `deepseek-r1`
+
+#### Adding New Models
+To add support for new models, please modify the `utils/models.py` utility script and update the model configuration in `run_llm_eval.py`. This ensures consistent model integration across the evaluation pipeline.
 
 ## 📊 About the Research
 
