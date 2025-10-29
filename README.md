@@ -34,12 +34,18 @@ git clone <repository-url>
 cd DharmaBench
 ```
 
-2. **Install dependencies:**
+2. **Create a conda environment (recommended):**
+```bash
+conda create -n dharmabench python=3.9
+conda activate dharmabench
+```
+
+3. **Install dependencies:**
 ```bash
 pip install -r requirements.txt
 ```
 
-3. **Set up API keys:**
+4. **Set up API keys:**
    - Copy `keys.yaml` and add your API keys for the models you want to use
    - Supported providers: OpenAI, Anthropic, Google, Together AI, Cohere
 
