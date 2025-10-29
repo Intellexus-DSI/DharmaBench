@@ -194,6 +194,7 @@ For questions or contributions, please contact: golankai@gmail.com
 For detailed dataset information, see [Data README](data/README.md).
 
 <div align="center">
+  <img src="assets/Runi Logo.png" alt="UHH Logo" width="150"/>
   <img src="assets/IL_RGB_Black_Gold.png" alt="IL Logo" width="150"/>
   <img src="assets/UHH Logo.png" alt="UHH Logo" width="150"/>
 </div>
