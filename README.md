@@ -2,6 +2,22 @@
 
 **DharmaBench** is a comprehensive benchmark suite for evaluating large language models (LLMs) on classification and detection tasks in historical Buddhist texts written in Sanskrit and Classical Tibetan. The benchmark includes 13 tasks (6 Sanskrit, 7 Tibetan), with 4 shared across both languages.
 
+## 📁 Dataset Overview
+
+DharmaBench contains carefully curated datasets for each task:
+
+- **Sanskrit tasks**: 6 tasks covering simile/metaphor detection, quotation detection, commentary analysis, and text classification
+- **Tibetan tasks**: 7 tasks including thematic classification, scriptural categorization, and translation origin detection
+- **Multilingual tasks**: 4 tasks available in both languages for cross-lingual evaluation
+
+Each dataset includes:
+- Standardized JSON format with `id` fields
+- Train/test splits where applicable
+- Balanced class distributions
+- High-quality annotations by domain experts
+
+For detailed information about each task and dataset structure, see [Data README](data/README.md).
+
 ## 📋 Repository Overview
 
 This repository contains everything needed to work with DharmaBench:
@@ -60,10 +76,6 @@ pip install -r requirements.txt
 python run_llm_eval.py
 ```
 
-3. **For training classification models:**
-   - Open `train_classification.ipynb` in Jupyter
-   - Follow the notebook cells to fine-tune XLM-RoBERTa models
-
 ## ⚙️ Configuration Parameters
 
 The `config_llm_eval.yaml` file contains all evaluation settings:
@@ -113,39 +125,6 @@ Choose one task to evaluate:
 #### Adding New Models
 To add support for new models, please modify the `utils/models.py` utility script and update the model configuration in `run_llm_eval.py`. This ensures consistent model integration across the evaluation pipeline.
 
-## 📊 About the Research
-
-DharmaBench addresses the critical gap in evaluating LLMs on historical Buddhist texts, which present unique challenges:
-
-- **Linguistic complexity**: Sanskrit and Classical Tibetan have rich morphological systems
-- **Cultural context**: Buddhist texts require understanding of philosophical concepts
-- **Multilingual evaluation**: Cross-lingual comparison between Sanskrit and Tibetan
-- **Domain-specific tasks**: Specialized tasks like metre classification and commentary detection
-
-The benchmark includes both **classification tasks** (predicting categories) and **detection tasks** (identifying spans in text), providing comprehensive evaluation across different NLP capabilities.
-
-### Key Features
-- **13 diverse tasks** across two classical languages
-- **4 cross-lingual tasks** for comparative evaluation
-- **Balanced dataset sizes** with train/test splits where available
-- **Standardized evaluation** with consistent metrics and protocols
-
-## 📁 Dataset Overview
-
-DharmaBench contains carefully curated datasets for each task:
-
-- **Sanskrit tasks**: 6 tasks covering simile/metaphor detection, quotation detection, commentary analysis, and text classification
-- **Tibetan tasks**: 7 tasks including thematic classification, scriptural categorization, and translation origin detection
-- **Multilingual tasks**: 4 tasks available in both languages for cross-lingual evaluation
-
-Each dataset includes:
-- Standardized JSON format with `id` fields
-- Train/test splits where applicable
-- Balanced class distributions
-- High-quality annotations by domain experts
-
-For detailed information about each task and dataset structure, see [Data README](data/README.md).
-
 ## 🏃‍♂️ Running Evaluations
 
 ### Basic Evaluation
@@ -168,14 +147,8 @@ python run_llm_eval.py --seed 42 --sc_runs 3 --responses_dir ./previous_results
 - `--sc_runs`: Number of self-consistency runs
 - `--responses_dir`: Directory with existing responses to reprocess
 
-## 📈 Results and Metrics
+## 📈 Results
 
-Results are saved in the `results/` directory with:
-- **`metrics.json`**: Overall performance metrics
-- **`classification_report.json`**: Detailed classification report
-- **`results.tsv`**: Per-sample predictions and ground truth
-- **`responses.json`**: Raw model responses
-- **`config.yaml`**: Configuration used for the run
 
 ## 📜 Citation
 
