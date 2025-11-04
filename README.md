@@ -30,11 +30,6 @@ This repository contains everything needed to work with DharmaBench:
 | **Utilities** | Helper functions for models, schemas, and data processing | [`utils/`](utils/) |
 | **Tasks** | Individual task implementations and evaluation logic | [`tasks/`](tasks/) |
 
-### Quick Navigation
-- **New to DharmaBench?** → Start with [Quick Start](#-quick-start)
-- **Want to evaluate models?** → See [Running Evaluations](#-running-evaluations)
-- **Looking for data details?** → Check [Data README](data/README.md)
-
 ## 🚀 Quick Start
 
 ### Prerequisites
