@@ -145,9 +145,9 @@ python run_llm_eval.py --seed 42 --sc_runs 3 --responses_dir ./previous_results
 ## 📈 Results
 
 <div align="center">
-  <img src="assets/results.png" alt="results" width="250" height="150"/>
-  <img src="assets/results_s.png" alt="results_s" width="250" height="150"/>
-  <img src="assets/results_t.png" alt="results_t" width="250" height="165" style="margin-bottom: 5px;"/>
+  <img src="assets/results.png" alt="results" width="250" height="150" style="max-width: 100%; height: revert-layer; max-height: 150px;"/>
+  <img src="assets/results_s.png" alt="results_s" width="250" height="150" style="max-width: 100%; height: revert-layer; max-height: 150px;"/>
+  <img src="assets/results_t.png" alt="results_t" width="250" height="150" style="max-width: 100%; height: revert-layer; max-height: 150px;"/>
 </div>
 
 ## 📜 Citation
