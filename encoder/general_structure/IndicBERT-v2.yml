@@ -1,0 +1,34 @@
+# IndicBERTv2.yaml
+
+model_name_or_path: ai4bharat/IndicBERTv2-MLM-Back-TLM
+train_path: path/to/train.csv/csv
+test_path: path/to/test.json/csv
+text_column: text
+label_column: label
+test_size: 0.1
+val_size: 0.1
+
+task_name: your_task_name
+task: classification
+
+seed: [42,0,1,32,52]
+
+train_batch_size: 32
+eval_batch_size: 32
+max_length: 128
+
+learning_rate: 5e-5
+weight_decay: 0.0
+num_train_epochs: 1
+
+save_strategy: steps
+eval_steps: 500
+save_steps: 500
+logging_steps: 1000
+
+load_best_model_at_end: false
+metric_for_best_model: accuracy
+greater_is_better: true
+
+report_to: ["wandb"]
+fp16: false

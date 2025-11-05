@@ -29,6 +29,7 @@ This repository contains everything needed to work with DharmaBench:
 | **Configuration** | Model settings, task parameters, and evaluation configs | [`config_llm_eval.yaml`](config_llm_eval.yaml) |
 | **Utilities** | Helper functions for models, schemas, and data processing | [`utils/`](utils/) |
 | **Tasks** | Individual task implementations and evaluation logic | [`tasks/`](tasks/) |
+| **Encoder** | Fine-tuning tool for Hugging Face transformer models | [`encoder/`](encoder/) |
 
 ## 🚀 Quick Start
 

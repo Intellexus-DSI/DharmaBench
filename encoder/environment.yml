@@ -1,0 +1,27 @@
+name: encoder_fine_tuning
+channels:
+  - conda-forge
+  - pytorch
+dependencies:
+  - python=3.12
+  - scikit-learn
+  - sentencepiece
+  - scipy
+  - pandas
+  - numpy
+  - pytorch
+  - torchaudio
+  - torchvision
+  - accelerate
+  - pip
+  - pip:
+    - huggingface-hub>=0.29.0
+    - wandb
+    - evaluate
+    - transformers>=4.46.3
+    - hf_xet
+    - eval4ner
+    - datasets
+    - tiktoken
+    - torchvideo
+    - tqdm
