@@ -144,11 +144,7 @@ python run_llm_eval.py --seed 42 --sc_runs 3 --responses_dir ./previous_results
 
 ## 📈 Results
 
-<div style="
-    height: 150px;
-    display: flex;
-    justify-content: space-around;
-">
+<div height="150px" display="flex" justify-content="space-around">
   <img src="assets/results.png" alt="results" width="250" height="150"/>
   <img src="assets/results_s.png" alt="results_s" width="250" height="150"/>
   <img src="assets/results_t.png" alt="results_t" width="250" height="150"/>
