@@ -1,0 +1,38 @@
+# bert-base-buddhist-sanskrit-v2.yaml
+
+# MODEL & DATA
+model_name_or_path: google/muril-base-cased   # HF repo name
+train_path: path/to/train.csv/csv
+test_path: path/to/test.json/csv                   # local JSON or HF dataset
+text_column: text                                        # name of text field
+label_column: label                                      # name of label field
+test_size: 0.1                                           # split fractions for JSON loader
+val_size: 0.1
+
+# OUTPUT
+task_name: your_task_name
+task: classification
+
+# RANDOMNESS
+seed: [42,0,1,32,52]
+
+train_batch_size: 16
+eval_batch_size: 16
+max_length: 512
+
+learning_rate: 5e-5
+weight_decay: 0.0
+num_train_epochs: 6
+
+save_strategy: epoch
+eval_steps: 200
+save_steps: 200
+logging_steps: 1000
+
+load_best_model_at_end: false
+metric_for_best_model: f1
+greater_is_better: true
+
+report_to: []
+fp16: false
+

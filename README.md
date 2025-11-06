@@ -2,6 +2,35 @@
 
 **DharmaBench** is a comprehensive benchmark suite for evaluating large language models (LLMs) on classification and detection tasks in historical Buddhist texts written in Sanskrit and Classical Tibetan. The benchmark includes 13 tasks (6 Sanskrit, 7 Tibetan), with 4 shared across both languages.
 
+## 📁 Dataset Overview
+
+DharmaBench contains carefully curated datasets for each task:
+
+- **Sanskrit tasks**: 6 tasks covering simile/metaphor detection, quotation detection, commentary analysis, and text classification
+- **Tibetan tasks**: 7 tasks including thematic classification, scriptural categorization, and translation origin detection
+- **Multilingual tasks**: 4 tasks available in both languages for cross-lingual evaluation
+
+Each dataset includes:
+- Standardized JSON format with `id` fields
+- Train/test splits where applicable
+- Balanced class distributions
+- High-quality annotations by domain experts
+
+For detailed information about each task and dataset structure, see [Data README](data/README.md).
+
+## 📋 Repository Overview
+
+This repository contains everything needed to work with DharmaBench:
+
+| Component | Description | Location |
+|-----------|-------------|----------|
+| **Dataset** | Curated datasets for all 13 tasks in Sanskrit and Tibetan | [`data/`](data/) |
+| **API Evaluation** | Run LLM evaluations via API calls (OpenAI, Anthropic, Google, etc.) | [`run_llm_eval.py`](run_llm_eval.py) |
+| **Configuration** | Model settings, task parameters, and evaluation configs | [`config_llm_eval.yaml`](config_llm_eval.yaml) |
+| **Utilities** | Helper functions for models, schemas, and data processing | [`utils/`](utils/) |
+| **Tasks** | Individual task implementations and evaluation logic | [`tasks/`](tasks/) |
+| **Encoder** | Fine-tuning tool for Hugging Face transformer models | [`encoder/`](encoder/) |
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -17,12 +46,18 @@ git clone <repository-url>
 cd DharmaBench
 ```
 
-2. **Install dependencies:**
+2. **Create a conda environment (recommended):**
+```bash
+conda create -n dharmabench python=3.9
+conda activate dharmabench
+```
+
+3. **Install dependencies:**
 ```bash
 pip install -r requirements.txt
 ```
 
-3. **Set up API keys:**
+4. **Set up API keys:**
    - Copy `keys.yaml` and add your API keys for the models you want to use
    - Supported providers: OpenAI, Anthropic, Google, Together AI, Cohere
 
@@ -36,10 +71,6 @@ pip install -r requirements.txt
 ```bash
 python run_llm_eval.py
 ```
-
-3. **For training classification models:**
-   - Open `train_classification.ipynb` in Jupyter
-   - Follow the notebook cells to fine-tune XLM-RoBERTa models
 
 ## ⚙️ Configuration Parameters
 
@@ -87,38 +118,8 @@ Choose one task to evaluate:
 - `qwen-72b`
 - `deepseek-r1`
 
-## 📊 About the Research
-
-DharmaBench addresses the critical gap in evaluating LLMs on historical Buddhist texts, which present unique challenges:
-
-- **Linguistic complexity**: Sanskrit and Classical Tibetan have rich morphological systems
-- **Cultural context**: Buddhist texts require understanding of philosophical concepts
-- **Multilingual evaluation**: Cross-lingual comparison between Sanskrit and Tibetan
-- **Domain-specific tasks**: Specialized tasks like metre classification and commentary detection
-
-The benchmark includes both **classification tasks** (predicting categories) and **detection tasks** (identifying spans in text), providing comprehensive evaluation across different NLP capabilities.
-
-### Key Features
-- **13 diverse tasks** across two classical languages
-- **4 cross-lingual tasks** for comparative evaluation
-- **Balanced dataset sizes** with train/test splits where available
-- **Standardized evaluation** with consistent metrics and protocols
-
-## 📁 Dataset Overview
-
-DharmaBench contains carefully curated datasets for each task:
-
-- **Sanskrit tasks**: 6 tasks covering simile/metaphor detection, quotation detection, commentary analysis, and text classification
-- **Tibetan tasks**: 7 tasks including thematic classification, scriptural categorization, and translation origin detection
-- **Multilingual tasks**: 4 tasks available in both languages for cross-lingual evaluation
-
-Each dataset includes:
-- Standardized JSON format with `id` fields
-- Train/test splits where applicable
-- Balanced class distributions
-- High-quality annotations by domain experts
-
-For detailed information about each task and dataset structure, see [Data README](data/README.md).
+#### Adding New Models
+To add support for new models, please modify the `utils/models.py` utility script and update the model configuration in `run_llm_eval.py`. This ensures consistent model integration across the evaluation pipeline.
 
 ## 🏃‍♂️ Running Evaluations
 
@@ -142,22 +143,13 @@ python run_llm_eval.py --seed 42 --sc_runs 3 --responses_dir ./previous_results
 - `--sc_runs`: Number of self-consistency runs
 - `--responses_dir`: Directory with existing responses to reprocess
 
-## 📈 Results and Metrics
+## 📈 Results
 
-Results are saved in the `results/` directory with:
-- **`metrics.json`**: Overall performance metrics
-- **`classification_report.json`**: Detailed classification report
-- **`results.tsv`**: Per-sample predictions and ground truth
-- **`responses.json`**: Raw model responses
-- **`config.yaml`**: Configuration used for the run
-
-## 🔬 Training Classification Models
-
-The `train_classification.ipynb` notebook provides:
-- XLM-RoBERTa fine-tuning for classification tasks
-- Cross-lingual transfer learning between Sanskrit and Tibetan
-- Comprehensive evaluation and visualization
-- Model comparison and analysis
+<div align="center">
+  <img src="assets/results.png" alt="results" width="250" height="150"/>
+  <img src="assets/results_s.png" alt="results_s" width="250" height="150"/>
+  <img src="assets/results_t.png" alt="results_t" width="250" height="150"/>
+</div>
 
 ## 📜 Citation
 
@@ -194,6 +186,7 @@ For questions or contributions, please contact: golankai@gmail.com
 For detailed dataset information, see [Data README](data/README.md).
 
 <div align="center">
+  <img src="assets/Runi Logo.png" alt="UHH Logo" width="150"/>
   <img src="assets/IL_RGB_Black_Gold.png" alt="IL Logo" width="150"/>
   <img src="assets/UHH Logo.png" alt="UHH Logo" width="150"/>
 </div>
