@@ -30,6 +30,9 @@ This repository contains everything needed to work with DharmaBench:
 | **Utilities** | Helper functions for models, schemas, and data processing | [`utils/`](utils/) |
 | **Tasks** | Individual task implementations and evaluation logic | [`tasks/`](tasks/) |
 | **Encoder** | Fine-tuning tool for Hugging Face transformer models | [`encoder/`](encoder/) |
+| **Annotation Guidelines** | Annotation Guidlines for all tasks | [`annotation_guidelines/`](annotation_guidelines/) |
+
+
 
 ## 🚀 Quick Start
 
