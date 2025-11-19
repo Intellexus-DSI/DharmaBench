@@ -3,7 +3,7 @@
 **DharmaBench** is a comprehensive benchmark suite for evaluating large language models (LLMs) on classification and detection tasks in historical Buddhist texts written in Sanskrit and Classical Tibetan. The benchmark includes 13 tasks (6 Sanskrit, 7 Tibetan), with 4 shared across both languages.
 
 ## 📁 Dataset Overview
-
+Access on 🤗 Hugging Face [here!](https://huggingface.co/datasets/Intellexus/DharmaBench)
 DharmaBench contains carefully curated datasets for each task:
 
 - **Sanskrit tasks**: 6 tasks covering simile/metaphor detection, quotation detection, commentary analysis, and text classification
